@@ -1,0 +1,87 @@
+<div class="card-user">
+    <mat-card>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="userForm">
+                <mat-grid-list cols="2" rowHeight="60px">
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>First Name</mat-label>
+                            <input matInput formControlName="firstName" placeholder="First name">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Last Name</mat-label>
+                            <input formControlName="lastName" matInput placeholder="last name">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Address</mat-label>
+                            <textarea formControlName="address" matInput
+                                placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Qualification</mat-label>
+                            <mat-select formControlName="qualification">
+                                <mat-option *ngFor="let qual of qualifications" [value]="qual">
+                                    {{qual}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Specialization</mat-label>
+                            <input formControlName="specialization" matInput placeholder="specialization">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Contact</mat-label>
+                            <input formControlName="contact" matInput type="number" placeholder="contact">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-label>DOB</mat-label>
+                        <input formControlName="dob" matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-label>Profile Image: </mat-label>
+                        <button type="button" mat-button color="primary" (click)="fileInput.click()">Choose
+                            File</button>
+                        <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+                        <span *ngIf="fileName">{{fileName}}</span>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <section class="section" formGroupName="languages">
+                            <h4>Select your languages:</h4>
+                            <mat-checkbox formControlName="english">English</mat-checkbox>
+                            <mat-checkbox formControlName="kanada">Kanada</mat-checkbox>
+                            <mat-checkbox formControlName="malaysia">Malaysia</mat-checkbox>
+                            <mat-checkbox formControlName="hindi">Hindi</mat-checkbox>
+                        </section>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <section class="section">
+                            <label class="example-margin">Gender:</label>
+                            <mat-radio-group [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+                                <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
+                            </mat-radio-group>
+                        </section>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class="btn-save">
+                    <button type="button" mat-raised-button color="primary" (click)="save()">{{isSubmitting ?
+                        'Saving...' : 'Save'}}</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

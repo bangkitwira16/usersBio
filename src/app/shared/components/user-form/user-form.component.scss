@@ -1,0 +1,28 @@
+.card-user {
+    padding: 16px;
+}
+
+form { 
+    mat-form-field {
+        padding-right: 10px;
+        width: 100%;
+    }
+}
+section {
+    width: 100%;
+    mat-checkbox {
+        margin-right: 5px;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+
+    mat-radio-button {
+        margin-right: 5px;
+    }
+}
+.btn-save {
+    margin-top: 15px;
+    text-align: right;
+}

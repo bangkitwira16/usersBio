@@ -1,0 +1,51 @@
+<ng-container *ngIf="isFilterable" [matColumnDef]="this.rowActionIcon">
+    <mat-card>
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="filter">
+        </mat-form-field>
+    </mat-card>
+</ng-container>
+
+<table mat-table [dataSource]="tableDataSource" matSort>
+
+    <!-- action column -->
+    <ng-container *ngIf="rowActionIcon?.length" [matColumnDef]="rowActionIcon">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" [id]="rowActionIcon" (click)="emitRowAction(element)">
+            <button mat-button>
+                <mat-icon>remove_shopping_cart</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <ng-container *ngFor="let tableColumn of tableColumns" [matColumnDef]="tableColumn.name">
+
+        <!-- if sortable column header -->
+        <ng-container *ngIf="tableColumn.isSortable; else notSortable">
+            <th mat-header-cell *matHeaderCellDef>
+                {{tableColumn.name}}
+            </th>
+        </ng-container>
+        <!-- else not sortable -->
+        <ng-template #notSortable>
+            <th mat-header-cell *matHeaderCellDef [class.text-right]="tableColumn.position == 'right'">
+                {{tableColumn.name}}
+            </th>
+        </ng-template>
+
+        <!-- column data -->
+        <td mat-cell *matCellDef="let element; let i = index;" [class.text-right]="tableColumn.position == 'right'">
+            <span *ngIf="isTemplate(tableColumn.type)">
+                <ng-container
+                    *ngTemplateOutlet="templateRef; context : {data : element[tableColumn.dataKey], key: tableColumn.dataKey, index: i}">
+                </ng-container>
+            </span>
+            <span *ngIf="!isTemplate(tableColumn.type)">
+                {{element[tableColumn.dataKey]}}
+            </span>
+        </td>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

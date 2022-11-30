@@ -1,0 +1,15 @@
+.text-editor {
+  width: 100%;
+  height: 200px;
+  border: 1px solid grey;
+}
+.btn-group {
+  background: black;
+}
+button {
+  padding: 2px !important;
+
+  .mat-icon {
+    display: flex;
+  }
+}

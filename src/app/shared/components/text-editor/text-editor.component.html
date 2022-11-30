@@ -1,0 +1,35 @@
+<h2>Text Editor</h2>
+<div class="btn-group">
+    <button mat-icon-button color="primary" aria-label="bold" (click)="exeCmd('bold')">
+        <mat-icon>format_bold</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="italic" (click)="exeCmd('italic')">
+        <mat-icon>format_italic</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="left" (click)="exeCmd('justifyLeft')">
+        <mat-icon>format_align_left</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="center" (click)="exeCmd('justifyCenter')">
+        <mat-icon>format_align_center</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="full" (click)="exeCmd('justifyFull')">
+        <mat-icon>segment</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="right" (click)="exeCmd('justifyRight')">
+        <mat-icon>format_align_right</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="underline" (click)="exeCmd('underline')">
+        <mat-icon>format_underline</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="ordered list" (click)="exeCmd('insertOrderedList')">
+        <mat-icon>format_list_numbered</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="ordered list" (click)="exeCmd('fontSize', 'increase')">
+        <mat-icon>text_increase</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="ordered list" (click)="exeCmd('fontSize', 'decrease')">
+        <mat-icon>text_decrease</mat-icon>
+    </button>
+</div>
+
+<div class="text-editor" [attr.contenteditable]="isEdit"  [textContent]="model" (input)="onInput($event)"></div>

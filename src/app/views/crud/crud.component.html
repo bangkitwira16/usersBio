@@ -1,0 +1,21 @@
+<app-user-form (onSave)="onSave()"></app-user-form>
+<app-table [tableData]="users" [tableColumns]="userTableColumns" [isFilterable]="true">
+    <ng-template #templateRef let-data="data" let-key="key" let-index="index">
+        <ng-container *ngIf="key === 'languages'">
+            <span>
+                {{data | language}}
+            </span>
+        </ng-container>
+        <ng-container *ngIf="key === 'image'">
+            <img [src]="data.src" alt="data.fileName" width="48"/>                
+        </ng-container>
+        <ng-container *ngIf="key === 'action'">
+            <button mat-icon-button color="primary" aria-label="left" (click)="onEdit(index)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" aria-label="left" (click)="onDelete(index)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </ng-container>
+    </ng-template>
+</app-table>
